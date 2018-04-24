@@ -41,6 +41,8 @@ public class SaveImageModule extends ReactContextBaseJavaModule{
     private static String  suffix;
     private static String  fileName;
     private static ProgressDialog mSaveDialog = null;
+    
+    private String saveName;
 
     private static final String TAG = "saveImageModule";
 
@@ -55,6 +57,7 @@ public class SaveImageModule extends ReactContextBaseJavaModule{
     
     @ReactMethod
     public void downloadImage(String url,String saveName){
+        this.saveName = saveName;
         mContext = getCurrentActivity();
         filePath = url;
         suffix = filePath.substring( filePath.lastIndexOf(".") + 1 );
@@ -125,7 +128,7 @@ public class SaveImageModule extends ReactContextBaseJavaModule{
             dirPath.mkdir();
         }
 
-        String fileName = System.currentTimeMillis() + "." + suffix;
+        String fileName = (this.saveName != null ? this.saveName : System.currentTimeMillis()) + "." + suffix;
 
         File imageFile = new File( dirPath,fileName );
 
