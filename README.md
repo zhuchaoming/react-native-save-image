@@ -59,7 +59,7 @@
 	    render(){
 	    	return(
 		    <View style={styles.container}>
-		        <TouchableHighlight onLongPress={()=>SaveImage.downloadImage(图片地址)}>
+		        <TouchableHighlight onLongPress={()=>SaveImage.downloadImage(图片地址, 保存图片名称)}>
 		 	    <Image
 			        source={{uri:图片地址}}
 			        style={styles.images}
